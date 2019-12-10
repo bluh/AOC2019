@@ -1,4 +1,4 @@
-start = 128888 #128392
+#start = 128888 #128392
 end = 599999 #643281
 
 firstRun = True
@@ -12,15 +12,11 @@ while a <= 5:
         c = b
         while c <= 9:
             d = c
-            isDoubleB = b == c and c != a
             while d <= 9:
                 e = d
-                isDoubleC = isDoubleB or c == d
                 while e <= 9:
                     f = e
-                    isDoubleD = isDoubleC or d == e
                     while f <= 9:
-                        isDoubleE = isDoubleD or e == f
 
                         if firstRun:
                             a = 1
@@ -30,10 +26,27 @@ while a <= 5:
                             e = 8
                             f = 8
                             firstRun = False
-                            isDoubleE = True
                         
-                        if isDoubleE:
+                        test = [a,b,c,d,e,f]
+
+                        hasDouble = False
+
+                        runChar = a
+                        runLength = 1
+
+                        for i in range(1, 6):
+                            if test[i] == runChar:
+                                runLength += 1
+                                hasDouble = runLength == 2
+                            else:
+                                if runLength == 2:
+                                    break
+                                runChar = test[i]
+                                runLength = 1
+
+                        if hasDouble:
                             total += 1
+
                         f += 1
                     e += 1
                 d += 1
